@@ -44,7 +44,28 @@ internal class Game
     }
 
     public (int red, int green, int blue) MinimumNumberOfCubes()
-    { 
-        return (0, 0, 0);
+    {
+        int red = 0;
+        int green = 0;
+        int blue = 0;
+
+        foreach (var set in Sets)
+        {
+            var minimumNumberOfCubesInASet = set.MinimumNumberOfCubes();
+            if (minimumNumberOfCubesInASet.red > red)
+            { 
+                red = minimumNumberOfCubesInASet.red;
+            }
+            if (minimumNumberOfCubesInASet.green > green)
+            {
+                green = minimumNumberOfCubesInASet.green;
+            }
+            if (minimumNumberOfCubesInASet.blue > blue)
+            {
+                blue = minimumNumberOfCubesInASet.blue;
+            }
+        }
+
+        return (red, green, blue);
     }
 }

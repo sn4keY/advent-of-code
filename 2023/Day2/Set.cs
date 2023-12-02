@@ -30,7 +30,12 @@ internal class Set
 
     public (int red, int green, int blue) MinimumNumberOfCubes()
     {
-        return (0, 0, 0);
+        int red = Cubes.Where(x => x.Color == Color.Red).Count();
+        int green = Cubes.Where(x => x.Color == Color.Green).Count();
+        int blue = Cubes.Where(x => x.Color == Color.Blue).Count();
+
+
+        return (red, green, blue);
     }
 }
 

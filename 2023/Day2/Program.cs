@@ -6,6 +6,7 @@ internal class Program
     {
         var games = ReadGamesFromFile("input.txt");
         PartOne(games);
+        PartTwo(games);
         Console.ReadLine();
     }
 
@@ -21,6 +22,18 @@ internal class Program
             }
         }
         Console.WriteLine($"Sum of the IDs of possible games: {sum}\n");
+    }
+
+    static void PartTwo(List<Game> games)
+    {
+        int sum = 0;
+        foreach (var game in games)
+        {
+            var minimumNumberOfCubesInGame = game.MinimumNumberOfCubes();
+            int power = minimumNumberOfCubesInGame.red * minimumNumberOfCubesInGame.green * minimumNumberOfCubesInGame.blue;
+            sum += power;
+        }
+        Console.WriteLine($"Power of each game: {sum}");
     }
 
     static List<Game> ReadGamesFromFile(string fileName)
