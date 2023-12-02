@@ -1,7 +1,26 @@
-﻿namespace Day2;
+﻿using System.Text.RegularExpressions;
+
+namespace Day2;
 
 internal class Set
 {
-    public IEnumerable<Cube> Cubes { get; init; } = Enumerable.Empty<Cube>();
+    private readonly string _colorRegexPattern = @"(green)|(red)|(blue)";
+
+    public ICollection<Cube> Cubes { get; init; } = new List<Cube>();
+
+    public Set(string cubesString)
+    {
+        string[] cubes = cubesString.Split(',');
+        foreach (var cube in cubes)
+        {
+            int numberOfCubes = int.Parse(Regex.Match(cube, @"\d").Value);
+            for (int i = 0; i < numberOfCubes; i++)
+            {
+                var match = Regex.Match(cube, _colorRegexPattern);
+                Color color = Enum.Parse<Color>(match.Value, true);
+                Cubes.Add(new Cube(color));
+            }
+        }
+    }
 }
 
