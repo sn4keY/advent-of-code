@@ -13,7 +13,7 @@ internal class Set
         string[] cubes = cubesString.Split(',');
         foreach (var cube in cubes)
         {
-            int numberOfCubes = int.Parse(Regex.Match(cube, @"\d").Value);
+            int numberOfCubes = int.Parse(Regex.Match(cube, @"\d+").Value);
             for (int i = 0; i < numberOfCubes; i++)
             {
                 var match = Regex.Match(cube, _colorRegexPattern);
@@ -21,6 +21,16 @@ internal class Set
                 Cubes.Add(new Cube(color));
             }
         }
+    }
+
+    public int NumberOfCubesByColor(Color color)
+    {
+        return Cubes.Where(x => x.Color == color).Count();
+    }
+
+    public (int red, int green, int blue) MinimumNumberOfCubes()
+    {
+        return (0, 0, 0);
     }
 }
 
