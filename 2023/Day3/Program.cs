@@ -10,6 +10,11 @@ internal class Program
     static void Main(string[] args)
     {
         string[] input = File.ReadAllLines("input.txt");
+        PartOne(input);
+    }
+
+    static void PartOne(string[] input)
+    {
         int sum = 0;
 
         for (int i = 0; i < input.Length; i++)
@@ -32,44 +37,7 @@ internal class Program
             }
         }
 
-        Console.WriteLine(sum);
-
-        /*
-        for (int i = 0; i < input.Length; i++)
-        {
-            MatchCollection symbolMatches = Regex.Matches(input[i], _symbolRegex);
-
-            if (symbolMatches.Count == 0)
-            {
-                continue;
-            }
-
-            foreach (Match match in symbolMatches)
-            {
-                int index = match.Index;
-
-                if (HasNumberOnLeft(i, input, index))
-                {
-                    // TODO search num on left
-                }
-
-                if (HasNumberOnRight(i, input, index))
-                {
-                    // TODO search num on right
-                }
-
-                if (HasNumberAbove(i, input, index))
-                {
-                    // TODO search num above
-                }
-
-                if (HasNumberBelow(i, input, index))
-                {
-                    // TODO search num below
-                }
-            }
-        }
-        */
+        Console.WriteLine($"Sum of all the engine parts: {sum}\n");
     }
 
     static bool HasSymbolOnLeft(int i, string[] input, int index)
@@ -140,22 +108,5 @@ internal class Program
         }
 
         return false;
-    }
-
-    static string[] GetSymbols(string[] input)
-    {
-        string concattedInput = string.Concat(input);
-        MatchCollection allSymbols = Regex.Matches(concattedInput, _symbolRegex);
-        var symbols = new List<string>();
-        foreach (Match symbol in allSymbols)
-        {
-            if (symbols.Contains(symbol.Value))
-            {
-                continue;
-            }
-
-            symbols.Add(symbol.Value);
-        }
-        return symbols.ToArray();
     }
 }
